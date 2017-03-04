@@ -1,43 +1,34 @@
-firstPlayer = {
-    height : 180,
-    age : 21,
+var years1 = [1999,2000,1950,2007];
+var years2 = [1979,2010,2000,2002];
 
-    calculatePoints : function () {
-        return this.height + (this.age * 5);
+function printfFullAge(yearsVector)
+{
+    var fullAge = [];
+    var fullAgeBoolean = [];
+
+    for(var i=0;i<yearsVector.length;i++)
+    {
+        fullAge[i] = yearsVector[i];
     }
-};
 
-secondPlayer = {
-    height : 170,
-    age : 22,
+    console.log(fullAge);
 
-    calculatePoints : function () {
-        return this.height + (this.age * 5);
+    for(i=0;i<yearsVector.length;i++)
+    {
+        var date = new Date();
+
+        console.log(date.getFullYear());
+
+        fullAgeBoolean[i] = (date.getFullYear() - yearsVector[i]) >= 18;
     }
-};
 
-thirdPlayer = {
-    height : 190,
-    age : 19,
+    console.log(fullAgeBoolean);
 
-    calculatePoints : function () {
-        return this.height + (this.age * 5);
-    }
-};
+    return fullAgeBoolean;
+}
 
-if((firstPlayer.calculatePoints() > secondPlayer.calculatePoints())&&(firstPlayer.calculatePoints() > thirdPlayer.calculatePoints()))
-{
-    console.log("First player won ! It was " + firstPlayer.calculatePoints() + ' - ' + secondPlayer.calculatePoints() + ' - ' + thirdPlayer.calculatePoints());
-}
-else if((secondPlayer.calculatePoints() > firstPlayer.calculatePoints())&&(secondPlayer.calculatePoints() > thirdPlayer.calculatePoints()))
-{
-    console.log("Second player won ! It was " + firstPlayer.calculatePoints() + ' - ' + secondPlayer.calculatePoints() + ' - ' + thirdPlayer.calculatePoints());
-}
-else if((thirdPlayer.calculatePoints() > firstPlayer.calculatePoints())&&(thirdPlayer.calculatePoints() > secondPlayer.calculatePoints()))
-{
-    console.log("Third player won ! It was " + firstPlayer.calculatePoints() + ' - ' + secondPlayer.calculatePoints() + ' - ' + thirdPlayer.calculatePoints());
-}
-else
-{
-    console.log("DRAW ! It was " + firstPlayer.calculatePoints() + ' - ' + secondPlayer.calculatePoints() + ' - ' + thirdPlayer.calculatePoints());
-}
+var full_1 = printfFullAge(years1);
+var full_2 = printfFullAge(years2);
+
+console.log("Full1 = "+full_1);
+console.log("Full2 = "+full_2);
