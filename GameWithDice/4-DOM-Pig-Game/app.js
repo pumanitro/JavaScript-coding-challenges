@@ -9,20 +9,9 @@ GAME RULES:
 
 */
 
-document.querySelector('.dice').style.display = 'none';
-
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
-
 var score,currentScore,activePlayer,stillPlaying;
 
-score = [0,0];
-currentScore = 0;
-activePlayer = 0;
-stillPlaying = true;
+gameInit();
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(stillPlaying)
@@ -68,6 +57,27 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
     }
 
 });
+
+document.querySelector('.btn-new').addEventListener('click', gameInit);
+
+function gameInit()
+{
+    score = [0,0];
+    currentScore = 0;
+    activePlayer = 0;
+    stillPlaying = true;
+
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
+
+}
+
 
 function nextRound()
 {
