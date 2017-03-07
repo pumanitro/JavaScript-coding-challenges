@@ -17,46 +17,55 @@ document.getElementById('score-1').textContent = '0';
 document.getElementById('current-0').textContent = '0';
 document.getElementById('current-1').textContent = '0';
 
-var score,currentScore,activePlayer;
+var score,currentScore,activePlayer,stillPlaying;
 
 score = [0,0];
 currentScore = 0;
 activePlayer = 0;
+stillPlaying = true;
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
-    var dice =  document.querySelector('.dice');
-    dice.style.display = 'block';
-
-    var rndNumber = Math.floor(Math.random() * 6) + 1;
-
-    dice.src = 'dice-'+ rndNumber +'.png';
-
-    if(rndNumber == 1)
+    if(stillPlaying)
     {
-        nextRound();
-    }
-    else
-    {
-        currentScore += rndNumber;
-        document.getElementById('current-'+activePlayer).textContent = currentScore;
+        var dice =  document.querySelector('.dice');
+        dice.style.display = 'block';
+
+        var rndNumber = Math.floor(Math.random() * 6) + 1;
+
+        dice.src = 'dice-'+ rndNumber +'.png';
+
+        if(rndNumber == 1)
+        {
+            nextRound();
+        }
+        else
+        {
+            currentScore += rndNumber;
+            document.getElementById('current-'+activePlayer).textContent = currentScore;
+        }
     }
 
 });
 
 document.querySelector('.btn-hold').addEventListener('click',function(){
 
-    score[activePlayer] += currentScore;
-
-    document.getElementById('score-'+activePlayer).textContent = score[activePlayer];
-
-    if(score[activePlayer] >= 20)
+    if(stillPlaying)
     {
-        document.getElementById('name-'+activePlayer).textContent = 'WINNER!';
-        document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
-        document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
+        score[activePlayer] += currentScore;
+
+        document.getElementById('score-'+activePlayer).textContent = score[activePlayer];
+
+        if(score[activePlayer] >= 20)
+        {
+            document.getElementById('name-'+activePlayer).textContent = 'WINNER!';
+            document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
+            document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
+
+            stillPlaying = false;
+        }
+        else
+            nextRound();
     }
-    else
-        nextRound();
 
 });
 
