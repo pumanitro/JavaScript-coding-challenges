@@ -17,17 +17,36 @@ document.getElementById('score-1').textContent = '0';
 document.getElementById('current-0').textContent = '0';
 document.getElementById('current-1').textContent = '0';
 
-var score,roundScore,activePlayer;
+var score,currentScore,activePlayer;
 
 score = [0,0];
-roundScore = 0;
+currentScore = 0;
 activePlayer = 0;
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
-    document.querySelector('.dice').style.display = 'block';
+    var dice =  document.querySelector('.dice');
+    dice.style.display = 'block';
 
     var rndNumber = Math.floor(Math.random() * 6) + 1;
 
-    document.querySelector('.dice').src = 'dice-'+ rndNumber +'.png';
+    dice.src = 'dice-'+ rndNumber +'.png';
+
+    if(rndNumber == 1)
+    {
+        currentScore = 0;
+        document.getElementById('current-'+activePlayer).textContent = 0;
+        activePlayer == 0 ? activePlayer = 1 : activePlayer = 0;
+
+        //Change style for active player
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+    }
+    else
+    {
+        currentScore += rndNumber;
+        document.getElementById('current-'+activePlayer).textContent = currentScore;
+    }
+
+
 
 });
