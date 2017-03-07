@@ -49,14 +49,21 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
 
     document.getElementById('score-'+activePlayer).textContent = score[activePlayer];
 
-    nextRound();
+    if(score[activePlayer] >= 20)
+    {
+        document.getElementById('name-'+activePlayer).textContent = 'WINNER!';
+        document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
+        document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
+    }
+    else
+        nextRound();
 
 });
 
 function nextRound()
 {
     currentScore = 0;
-    document.getElementById('current-'+activePlayer).textContent = 0;
+    document.getElementById('current-'+activePlayer).textContent = '0';
     activePlayer == 0 ? activePlayer = 1 : activePlayer = 0;
 
     //Change style for active player
