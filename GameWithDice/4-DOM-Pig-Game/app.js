@@ -23,3 +23,11 @@ score = [0,0];
 roundScore = 0;
 activePlayer = 0;
 
+document.querySelector('.btn-roll').addEventListener('click', function() {
+    document.querySelector('.dice').style.display = 'block';
+
+    var rndNumber = Math.floor(Math.random() * 6) + 1;
+
+    document.querySelector('.dice').src = 'dice-'+ rndNumber +'.png';
+
+});
