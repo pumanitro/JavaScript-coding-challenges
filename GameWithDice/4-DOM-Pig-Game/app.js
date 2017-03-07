@@ -33,13 +33,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
     if(rndNumber == 1)
     {
-        currentScore = 0;
-        document.getElementById('current-'+activePlayer).textContent = 0;
-        activePlayer == 0 ? activePlayer = 1 : activePlayer = 0;
-
-        //Change style for active player
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
+        nextRound();
     }
     else
     {
@@ -47,6 +41,25 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         document.getElementById('current-'+activePlayer).textContent = currentScore;
     }
 
+});
 
+document.querySelector('.btn-hold').addEventListener('click',function(){
+
+    score[activePlayer] += currentScore;
+
+    document.getElementById('score-'+activePlayer).textContent = score[activePlayer];
+
+    nextRound();
 
 });
+
+function nextRound()
+{
+    currentScore = 0;
+    document.getElementById('current-'+activePlayer).textContent = 0;
+    activePlayer == 0 ? activePlayer = 1 : activePlayer = 0;
+
+    //Change style for active player
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+}
