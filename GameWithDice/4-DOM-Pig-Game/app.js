@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var score,currentScore,activePlayer,stillPlaying,lastRoll;
+var score,currentScore,activePlayer,stillPlaying,lastRoll, totalScore;
 
 gameInit();
 
@@ -53,7 +53,7 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
 
         document.getElementById('score-'+activePlayer).textContent = score[activePlayer];
 
-        if(score[activePlayer] >= 100)
+        if(score[activePlayer] >= totalScore)
         {
             document.getElementById('name-'+activePlayer).textContent = 'WINNER!';
             document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
@@ -76,6 +76,9 @@ function gameInit()
     activePlayer = 0;
     stillPlaying = true;
     lastRoll = null;
+    totalScore = 100;
+
+    document.getElementById('totalScore').value = totalScore;
 
     document.querySelector('.dice').style.display = 'none';
 
