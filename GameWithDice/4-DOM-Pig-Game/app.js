@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var score,currentScore,activePlayer,stillPlaying,lastRoll, totalScore;
+var score,currentScore,activePlayer,stillPlaying,lastRoll, totalScore = 100;
 
 gameInit();
 
@@ -69,6 +69,11 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
 
 document.querySelector('.btn-new').addEventListener('click', gameInit);
 
+document.getElementById('totalScore').addEventListener('change',function(){
+
+    totalScore = document.getElementById('totalScore').value;
+});
+
 function gameInit()
 {
     score = [0,0];
@@ -76,7 +81,6 @@ function gameInit()
     activePlayer = 0;
     stillPlaying = true;
     lastRoll = null;
-    totalScore = 100;
 
     document.getElementById('totalScore').value = totalScore;
 
