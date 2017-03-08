@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var score,currentScore,activePlayer,stillPlaying,lastRoll, totalScore = 100;
+var score,currentScore,activePlayer,stillPlaying, totalScore = 100;
 
 gameInit();
 
@@ -17,30 +17,34 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     if(stillPlaying)
     {
         var dice =  document.querySelector('.dice');
+        var dice2 =  document.querySelector('.dice2');
+
         dice.style.display = 'block';
+        dice2.style.display = 'block';
 
         var rndNumber = Math.floor(Math.random() * 6) + 1;
+        var rndNumber2 = Math.floor(Math.random() * 6) + 1;
 
         dice.src = 'dice-'+ rndNumber +'.png';
+        dice2.src = 'dice-'+ rndNumber2 +'.png';
 
-        if(lastRoll == 6 && rndNumber == 6)
+        if(rndNumber2 == 6 && rndNumber == 6)
         {
             score[activePlayer] = 0;
             document.getElementById('score-'+activePlayer).textContent = score[activePlayer];
             nextRound();
         }
 
-        if(rndNumber == 1)
+        if(rndNumber == 1 || rndNumber2 == 1)
         {
             nextRound();
         }
         else
         {
-            currentScore += rndNumber;
+            currentScore += rndNumber + rndNumber2;
             document.getElementById('current-'+activePlayer).textContent = currentScore;
         }
 
-        lastRoll = rndNumber;
     }
 
 });
@@ -80,11 +84,11 @@ function gameInit()
     currentScore = 0;
     activePlayer = 0;
     stillPlaying = true;
-    lastRoll = null;
 
     document.getElementById('totalScore').value = totalScore;
 
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice2').style.display = 'none';
 
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
