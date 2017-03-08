@@ -16,8 +16,8 @@ gameInit();
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(stillPlaying)
     {
-        var dice =  document.querySelector('.dice');
-        var dice2 =  document.querySelector('.dice2');
+        var dice =  document.getElementById('dice-0');
+        var dice2 =  document.getElementById('dice-1');
 
         dice.style.display = 'block';
         dice2.style.display = 'block';
@@ -87,8 +87,8 @@ function gameInit()
 
     document.getElementById('totalScore').value = totalScore;
 
-    document.querySelector('.dice').style.display = 'none';
-    document.querySelector('.dice2').style.display = 'none';
+    document.getElementById('dice-0').style.display = 'none';
+    document.getElementById('dice-1').style.display = 'none';
 
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
