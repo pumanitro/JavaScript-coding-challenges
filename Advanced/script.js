@@ -4,6 +4,17 @@ var Question = function(question,answers,correctAnswer)
     this.question = question;
     this.answers = answers;
     this.correctAnswer = correctAnswer;
+
+    this.isCorrect = function(answer){
+
+        var ansIndex;
+
+        if(answer == 'a') ansIndex = 0;
+        else if(answer == 'b') ansIndex = 1;
+        else ansIndex = 2;
+
+        return ansIndex == this.correctAnswer;
+    };
 };
 
 var questionName = new Question("What is my name ?",["Patryk","Oskar","Piotr"],0);
@@ -21,7 +32,18 @@ var allQuestions = {
       console.log('a) '+this.listOfQuestions[randPos].answers[0]);
       console.log('b) '+this.listOfQuestions[randPos].answers[1]);
       console.log('c) '+this.listOfQuestions[randPos].answers[2]);
+
+      return this.listOfQuestions[randPos];
     }
 };
 
-allQuestions.showRandomQuestion();
+var choosenQuestion = allQuestions.showRandomQuestion();
+
+var answer = prompt("Please enter correct answer (a,b,c)");
+
+if (answer) {
+    if(choosenQuestion.isCorrect(answer))
+        console.log('Correct answer!');
+    else
+        console.log('Uncorrect answer :(');
+}
