@@ -1,5 +1,7 @@
 (function quizInConsole(){
 
+    var points = 0;
+
     //question - string, answers - array of strings, correctAnswer - int (array index)
     var Question = function(question,answers,correctAnswer)
     {
@@ -39,15 +41,26 @@
         }
     };
 
-    var choosenQuestion = allQuestions.showRandomQuestion();
+    var answer;
 
-    var answer = prompt("Please enter correct answer (a,b,c)");
+    while(answer != 'exit')
+    {
+        var choosenQuestion = allQuestions.showRandomQuestion();
 
-    if (answer) {
-        if(choosenQuestion.isCorrect(answer))
-            console.log('Correct answer!');
-        else
-            console.log('Uncorrect answer :(');
+        answer = prompt("Please enter correct answer (a,b,c)");
+
+        if (answer) {
+            if(choosenQuestion.isCorrect(answer))
+            {
+                console.log('Correct answer!');
+                points++;
+            }
+            else
+                console.log('Uncorrect answer :(');
+        }
+
+        console.log('You have ' + points + ' '+ (points==1 ? 'point' : 'points') + '.');
     }
+
 
 })();
