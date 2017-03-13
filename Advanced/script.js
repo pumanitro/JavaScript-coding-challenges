@@ -29,7 +29,7 @@
         listOfQuestions : [questionName,questionDogName,questionColor],
         questionNumber : 0,
         showRandomQuestion : function(){
-          var randPos = Math.floor(Math.random() * 3);
+          var randPos = Math.floor(Math.random() * this.listOfQuestions.length);
           this.questionNumber++;
 
           console.log(this.questionNumber+'. '+this.listOfQuestions[randPos].question);
