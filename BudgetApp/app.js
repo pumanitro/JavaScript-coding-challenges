@@ -97,10 +97,6 @@ var budgetController = (function(){
                 data.percentage = -1;
 
 
-        },
-
-        test: function () {
-            console.log(data);
         }
 
     }
@@ -187,6 +183,11 @@ var UIController = (function(){
                 document.querySelector(DOMStrings.percentageLabel).textContent = '---';
 
         },
+        
+        deleteListItem: function (selectorId) {
+            var el = document.getElementById(selectorId);
+            el.parentNode.removeChild(el);
+        },
 
         getDOMStrings : function(){
             return DOMStrings;
@@ -266,8 +267,10 @@ var controller = (function(budgetCtrl,UICtrl){
             budgetCtrl.deleteItem(type,ID);
 
             //2. Delete the item from the UI
+            UICtrl.deleteListItem(itemID);
 
             //3. Update and show the new budget
+            updateBugdet();
         }
 
     };
