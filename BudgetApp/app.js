@@ -21,8 +21,6 @@ var budgetController = (function(){
         data.totals[type] = sum;
     };
 
-
-
     var data = {
         allItems: {
             exp: [],
@@ -69,6 +67,20 @@ var budgetController = (function(){
             }
         },
 
+        deleteItem: function(type,id) {
+            var ids, index;
+
+            ids = data.allItems[type].map(function(current){
+               return current.id;
+            });
+
+            index = ids.indexOf(id);
+
+            if(index !== -1)
+                data.allItems[type].splice(index,1);
+
+        },
+
         calculateBudget: function() {
 
             //Calculate total income and expenses
@@ -85,6 +97,10 @@ var budgetController = (function(){
                 data.percentage = -1;
 
 
+        },
+
+        test: function () {
+            console.log(data);
         }
 
     }
@@ -237,15 +253,17 @@ var controller = (function(budgetCtrl,UICtrl){
     var ctrlDeleteItem = function(event){
         var itemID,splitID,type, ID;
 
+        //I can do this bcs i hardcoded html structure.
         itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
 
         if(itemID){
 
             splitID = itemID.split('-');
             type = splitID[0];
-            ID = splitID[1];
+            ID = parseInt(splitID[1]);
 
             //1. Delete the item from the data structure
+            budgetCtrl.deleteItem(type,ID);
 
             //2. Delete the item from the UI
 
