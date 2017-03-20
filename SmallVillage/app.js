@@ -65,7 +65,7 @@ class Parks{
 
     showAgeAverage(){
         let value = 0;
-        this.parks.forEach(function (cur) {
+        this.parks.forEach(cur => {
            value += cur.age;
         });
         value = value/this.parks.length;
@@ -75,7 +75,14 @@ class Parks{
 
     }
 
-    showWoody(){
+    showWoody(treesAmount){
+
+        this.parks.forEach(cur => {
+
+            if(cur.treesNumber > treesAmount)
+                console.log(`${cur.name} has more than ${treesAmount} trees.`);
+
+        });
 
     }
 
@@ -83,7 +90,7 @@ class Parks{
 
 
 let greenPark = new Park('Green Park',1990,2000,30);
-let bluePark = new Park('Blue Park',1876,1000,10);
+let bluePark = new Park('Blue Park',1876,1001,10);
 let yellowPark = new Park('Yellow Park',1400,500,100);
 
 let orangeStreet = new Street('Orange Street',1873,6);
@@ -93,5 +100,6 @@ let potatoStreet = new Street('Potato Street',1900);
 
 let allParks = new Parks([greenPark,bluePark,yellowPark]);
 
-console.log(allParks);
-allParks.showAgeAverage();
+//console.log(allParks);
+//allParks.showAgeAverage();
+allParks.showWoody(1000);
