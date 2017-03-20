@@ -58,9 +58,40 @@ class Street extends TownEl{
 
 }
 
+class Parks{
+    constructor(parks){
+        this.parks = parks;
+    }
+
+    showAgeAverage(){
+        let value = 0;
+        this.parks.forEach(function (cur) {
+           value += cur.age;
+        });
+        value = value/this.parks.length;
+        value = parseFloat(value.toFixed(2));
+
+        console.log(`Average of all park ages is ${value}`);
+
+    }
+
+    showWoody(){
+
+    }
+
+}
+
+
 let greenPark = new Park('Green Park',1990,2000,30);
+let bluePark = new Park('Blue Park',1876,1000,10);
+let yellowPark = new Park('Yellow Park',1400,500,100);
 
-let orangeStreet = new Street('Orange Street',1500,3);
+let orangeStreet = new Street('Orange Street',1873,6);
+let appleStreet = new Street('Apple Street',1500,3);
+let bananaStreet = new Street('Banana Street',1689,1);
+let potatoStreet = new Street('Potato Street',1900);
 
-console.log(orangeStreet);
-console.log(greenPark);
+let allParks = new Parks([greenPark,bluePark,yellowPark]);
+
+console.log(allParks);
+allParks.showAgeAverage();
