@@ -74,7 +74,7 @@ class Parks{
         value = value/this.parks.length;
         value = parseFloat(value.toFixed(2));
 
-        console.log(`Average of all park ages is ${value}`);
+        console.log(`Our ${this.parks.length} parks have an average age of ${value} years.`);
 
     }
 
@@ -86,6 +86,18 @@ class Parks{
                 console.log(`${cur.name} has more than ${treesAmount} trees.`);
 
         });
+
+    }
+
+    showReport(){
+        console.log('------Parks Report------');
+        this.showAgeAverage();
+
+        this.parks.forEach(cur => {
+            console.log(`${cur.name} has a tree density of ${cur.density} trees per square km.`)
+        });
+
+        this.showWoody(1000);
 
     }
 
@@ -118,8 +130,14 @@ class Streets{
         this.lengthAverage = parseFloat((sum/givenLengths).toFixed(2));
     }
 
-    showRaport(){
+    showReport(){
+        console.log('------Streets Report------');
         console.log(`Our ${this.streets.length} streets have a total length of ${this.totalLength} km, with an average of ${this.lengthAverage} km.`);
+
+        this.streets.forEach(cur => {
+           console.log(`${cur.name}, build in ${cur.buildYear}, is a ${cur.size} street.`);
+        });
+
     }
 
 }
@@ -138,9 +156,8 @@ let allParks = new Parks([greenPark,bluePark,yellowPark]);
 
 let allStreets = new Streets([orangeStreet,appleStreet,bananaStreet,potatoStreet]);
 
-//console.log(allParks);
-//allParks.showAgeAverage();
-//allParks.showWoody(1000);
 
-allStreets.showRaport();
+allParks.showReport();
+
+allStreets.showReport();
 
