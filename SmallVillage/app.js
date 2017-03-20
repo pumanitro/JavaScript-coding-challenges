@@ -16,14 +16,18 @@ class Park extends TownEl {
         super(name,buildYear);
         this.treesNumber = treesNumber;
         this.parkArea = parkArea;
+        this.calcDensity();
+        this.calcAge();
     }
 
     calcDensity(){
-        this.density = Math.round(this.treesNumber/this.parkArea);
+        this.density = parseFloat((this.treesNumber/this.parkArea).toFixed(2));
     }
 
     calcAge(){
-        this.age = Date.prototype.getFullYear() - this.buildYear;
+        let year = new Date;
+        year = year.getFullYear();
+        this.age = year - this.buildYear;
     }
 }
 
@@ -32,24 +36,31 @@ class Street extends TownEl{
     constructor(name,buildYear,length){
         super(name,buildYear);
         this.length = length;
+        this.getSize();
     }
 
     getSize(){
 
         if(this.length === undefined)
-            return 'normal';
+            this.size = 'normal';
         else if(this.length < 1)
-            return 'tiny';
+            this.size =  'tiny';
         else if(this.length < 2)
-            return 'small';
+            this.size =  'small';
         else if(this.length < 3)
-            return 'normal';
+            this.size =  'normal';
         else if(this.length < 5)
-            return 'big';
+            this.size =  'big';
         else if(this.length > 5)
-            return 'huge';
+            this.size =  'huge';
 
     }
 
-
 }
+
+let greenPark = new Park('Green Park',1990,2000,30);
+
+let orangeStreet = new Street('Orange Street',1500,3);
+
+console.log(orangeStreet);
+console.log(greenPark);
