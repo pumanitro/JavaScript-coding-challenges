@@ -42,7 +42,10 @@ class Street extends TownEl{
     getSize(){
 
         if(this.length === undefined)
+        {
             this.size = 'normal';
+            this.length = -1;
+        }
         else if(this.length < 1)
             this.size =  'tiny';
         else if(this.length < 2)
@@ -88,6 +91,39 @@ class Parks{
 
 }
 
+class Streets{
+
+    constructor(streets){
+        this.streets = streets;
+        this.calcTotalLength();
+        this.calcLengthAverage();
+    }
+
+    calcTotalLength(){
+        this.totalLength = 0;
+        this.streets.forEach(cur => {
+            if(cur.length != -1)
+                this.totalLength += cur.length;
+        });
+    }
+
+    calcLengthAverage(){
+        let sum = 0, givenLengths = 0;
+        this.streets.forEach(cur => {
+            if(cur.length != -1) {
+                sum += cur.length;
+                givenLengths++;
+            }
+        });
+        this.lengthAverage = parseFloat((sum/givenLengths).toFixed(2));
+    }
+
+    showRaport(){
+        console.log(`Our ${this.streets.length} streets have a total length of ${this.totalLength} km, with an average of ${this.lengthAverage} km.`);
+    }
+
+}
+
 
 let greenPark = new Park('Green Park',1990,2000,30);
 let bluePark = new Park('Blue Park',1876,1001,10);
@@ -100,6 +136,11 @@ let potatoStreet = new Street('Potato Street',1900);
 
 let allParks = new Parks([greenPark,bluePark,yellowPark]);
 
+let allStreets = new Streets([orangeStreet,appleStreet,bananaStreet,potatoStreet]);
+
 //console.log(allParks);
 //allParks.showAgeAverage();
-allParks.showWoody(1000);
+//allParks.showWoody(1000);
+
+allStreets.showRaport();
+
